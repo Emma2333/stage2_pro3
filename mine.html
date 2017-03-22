@@ -70,7 +70,8 @@
             }else {
                 return 0;
             }
-        })
+        })  //到这里确实是完成排序了   可是函数希望你吧data返回  不要忘了下一步
+        return data;
     }
 
     /**
@@ -79,28 +80,21 @@
      * 格式见ul中的注释的部分
      */
     function render(data) {
-       /* alert(data.length)*/
+        /*alert(data.length)*/
         var resort=document.getElementById("resort");
-        var num = 1;
-        var text = "";
-        for(var i in data){
-           /* var li_=document.createElement('li');
-            var txt=document.createTextNode(data[i][0]+"空气质量：");
+        for(var i=0;i<data.length;i++){
+            var li_=document.createElement('li');
+            var txt=document.createTextNode("第"+(i+1)+"名"+data[i][0]+"空气质量：");
             var b_=document.createElement('b');
             var b_txt=document.createTextNode(data[i][1]);
             b_.appendChild(b_txt);
             li_.appendChild(txt);
+            resort.appendChild(li_);
             li_.appendChild(b_);
-            resort.appendChild(li);
-            alert(li);*/
-            text += "<li>第" + num++ + "名:" + data[i][0] + "空气质量:<b>" + data[i][1] + "</b></li>";
-            result.innerHTML = text ;
-            alert(li);
+            console.log(li_);
         }
     }
-    var aqiData = getData();
-    aqiData = sortAqiData(aqiData);
-    console.log(aqiData);
+
     function btnHandle() {
         var aqiData = getData();
         aqiData = sortAqiData(aqiData);
@@ -110,6 +104,10 @@
     function init() {
 
         // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
+        var btn=document.getElementById('sort-btn');
+        btn.onclick=function () {
+            btnHandle();
+        }
 
     }
 
