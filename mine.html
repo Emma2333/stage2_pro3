@@ -42,9 +42,12 @@
         var source = document.getElementById("source");
         var li = source.children;
         for(var i = 0;i < li.length;i++){
+            /*实现了字符串到字符串数组的转化*/
             data[i] = [li[i].innerHTML.split('空气质量：')[0],li[i].children[0].innerHTML];
             /*li[i].innerHTML.split('空气质量')  将“北京空气质量：<b>90</b>”=》[‘北京’,'<b>90</b>']
             * 而li[i].innerHTML.split('空气质量')【0】 则会取到‘北京l’*/
+            data[i][1]=parseInt(data[i][1]);
+            /*注意这里是string，比较大小会有问题  要变成number*/
         }
         /*console.log(data);*/
         /*
